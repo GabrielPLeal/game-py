@@ -29,9 +29,9 @@ def _continue_game(points: int) -> None:
         print(f"Você finalizou com {points} ponto(s).")
         print('Até a próxima!')
     elif answer == 1:
-        jogar(points)
+        play(points)
     else:
-        print(f"Resposta {answer} inxistente!")
+        print(f"Resposta {answer} inexistente!")
         _continue_game(points)
 
 
