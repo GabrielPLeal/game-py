@@ -1,84 +1,88 @@
 from random import randint
 
 
-class Calcular:
+class Calc:
 
-    def __init__(self, dificuldade: int, /) -> None:
-        self.__dificuldade: int = dificuldade
-        self.__valor1: int = self._gerar_valor
-        self.__valor2: int = self._gerar_valor
-        self.__operacao: int = randint(1, 3)
-        self.__resultado: int = self._gerar_resultado
-
-    @property
-    def dificuldade(self) -> int:
-        return self.__dificuldade
+    def __init__(self, difficulty: int, /) -> None:
+        self.__difficulty: int = difficulty
+        self.__value_1: int = self._make_value
+        self.__value_2: int = self._make_value
+        self.__operation: int = randint(1, 3)
+        self.__result: int = self._make_result
 
     @property
-    def valor1(self) -> int:
-        return self.__valor1
+    def difficulty(self) -> int:
+        return self.__difficulty
 
     @property
-    def valor2(self) -> int:
-        return self.__valor2
+    def value_1(self) -> int:
+        return self.__value_1
 
     @property
-    def operacao(self) -> int:
-        return self.__operacao
+    def value_2(self) -> int:
+        return self.__value_2
 
     @property
-    def resultado(self) -> int:
-        return self.__resultado
+    def operation(self) -> int:
+        return self.__operation
+
+    @property
+    def result(self) -> int:
+        return self.__result
 
     def __str__(self) -> str:
-        operacao: str = 'Operação desconhecida'
-        if self.operacao == 1:
-            operacao = 'Somar'
-        elif self.operacao == 2:
-            operacao = 'Diminuir'
-        elif self.operacao == 3:
-            operacao = 'Multiplicar'
-        return (f"Valor 1: {self.valor1} \nValor 2: {self.valor2} "
-                f"\nDificuldade: {self.dificuldade} \nOperação: {operacao}")
+        operation: str = 'Operação desconhecida'
+        if self.operation == 1:
+            operation = 'Somar'
+        elif self.operation == 2:
+            operation = 'Diminuir'
+        elif self.operation == 3:
+            operation = 'Multiplicar'
+        return (
+            f"Valor 1: {self.value_1} \n"
+            f"Valor 2: {self.value_2} \n"
+            f"Difficuldade: {self.difficulty} \n"
+            f"Operação: {operation}"
+        )
 
     @property
-    def _gerar_valor(self) -> int:
-        if self.dificuldade == 1:
+    def _make_value(self) -> int:
+        if self.difficulty == 1:
             return randint(0, 10)
-        elif self.dificuldade == 2:
+        elif self.difficulty == 2:
             return randint(0, 100)
-        elif self.dificuldade == 3:
+        elif self.difficulty == 3:
             return randint(0, 1000)
-        elif self.dificuldade == 4:
+        elif self.difficulty == 4:
             return randint(0, 10000)
         return randint(0, 100000)
 
     @property
-    def _gerar_resultado(self) -> int:
-        if self.operacao == 1:
-            return self.valor1 + self.valor2
-        elif self.operacao == 2:
-            return self.valor1 - self.valor2
-        return self.valor1 * self.valor2
+    def _make_result(self) -> int:
+        if self.operation == 1:
+            return self.value_1 + self.value_2
+        elif self.operation == 2:
+            return self.value_1 - self.value_2
+        return self.value_1 * self.value_2
 
     @property
-    def _operacao_simbolo(self) -> str:
-        if self.operacao == 1:
+    def _symbol_operation(self) -> str:
+        if self.operation == 1:
             return '+'
-        elif self.operacao == 2:
+        elif self.operation == 2:
             return '-'
         return 'x'
 
-    def checar_resultado(self, resposta: int) -> bool:
+    def check_result(self, resposta: int) -> bool:
         certo: bool = False
 
-        if self.resultado == resposta:
+        if self.result == resposta:
             print('Resposta correta!')
             certo = True
         else:
             print('Resposta errada!')
-        print(f'{self.valor1} {self._operacao_simbolo} {self.valor2} = {self.resultado}')
+        print(f'{self.value_1} {self._symbol_operation} {self.value_2} = {self.result}')
         return certo
 
-    def mostrar_operacao(self) -> None:
-        print(f'{self.valor1} {self._operacao_simbolo} {self.valor2} = ?')
+    def show_operation(self) -> None:
+        print(f'{self.value_1} {self._symbol_operation} {self.value_2} = ?')

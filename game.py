@@ -1,38 +1,38 @@
-from models.calcular import Calcular
+from models.calcular import Calc
 
 
 def main() -> None:
-    pontos: int = 0
-    jogar(pontos)
+    points: int = 0
+    play(points)
 
 
-def jogar(pontos: int) -> None:
-    dificuldade: int = int(input('Informe o nível de dificuldade desejada [1, 2, 3 ou 4]: '))
+def play(points: int) -> None:
+    difficulty: int = int(input('Informe o nível de dificuldade desejada [1, 2, 3 ou 4]: '))
 
-    calcular: Calcular = Calcular(dificuldade)
+    calc: Calc = Calc(difficulty)
 
     print('Informe o resultado para a seguinte operação: ')
-    calcular.mostrar_operacao()
+    calc.show_operation()
 
-    resultado: int = int(input())
+    result: int = int(input())
 
-    if calcular.checar_resultado(resultado):
-        pontos += 1
-        print(f'Você tem {pontos} ponto(s).')
+    if calc.check_result(result):
+        points += 1
+        print(f'Você tem {points} ponto(s).')
 
-    _continuar_jogo(pontos)
+    _continue_game(points)
 
 
-def _continuar_jogo(pontos):
-    resposta: int = int(input('Deseja continuar no jogo? [1 - sim, 0 - não] '))
-    if resposta == 0:
-        print(f"Você finalizou com {pontos} ponto(s).")
+def _continue_game(points: int) -> None:
+    answer: int = int(input('Deseja continuar no jogo? [1 - sim, 0 - não] '))
+    if answer == 0:
+        print(f"Você finalizou com {points} ponto(s).")
         print('Até a próxima!')
-    elif resposta == 1:
-        jogar(pontos)
+    elif answer == 1:
+        jogar(points)
     else:
-        print(f"Resposta {resposta} inxistente!")
-        _continuar_jogo(pontos)
+        print(f"Resposta {answer} inxistente!")
+        _continue_game(points)
 
 
 if __name__ == '__main__':
